@@ -21,7 +21,7 @@ class H3 < Formula
   end
 
   test do
-    result = pipe_output("#{bin}/geoToH3 10", "40.689167 -74.044444")
+    result = pipe_output("#{bin}/geoToH3 -r 10 --lat 40.689167 --lon -74.044444")
     assert_equal "8a2a1072b59ffff", result.chomp
   end
 end
