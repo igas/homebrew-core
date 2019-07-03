@@ -1,8 +1,8 @@
 class Jsoncpp < Formula
   desc "Library for interacting with JSON"
   homepage "https://github.com/open-source-parsers/jsoncpp"
-  url "https://github.com/open-source-parsers/jsoncpp/archive/1.9.0.tar.gz"
-  sha256 "bdd3ba9ed1f110b3eb57474d9094e90ab239b93b4803b4f9b1722c281e85a4ac"
+  url "https://github.com/open-source-parsers/jsoncpp/archive/1.9.1.tar.gz"
+  sha256 "c7b40f5605dd972108f503f031b20186f5e5bca2b65cd4b8bd6c3e4ba8126697"
   head "https://github.com/open-source-parsers/jsoncpp.git"
 
   bottle do
@@ -39,10 +39,12 @@ class Jsoncpp < Formula
           return Json::parseFromStream(builder, stream1, &root, &errs) ? 0: 1;
       }
     EOS
-    system ENV.cxx, "-std=c++11", testpath/"test.cpp", "-o", "test",
-                  "-I#{include}/jsoncpp",
-                  "-L#{lib}",
-                  "-ljsoncpp"
+    system ENV.cxx, testpath/"test.cpp",
+                    "-o", "test",
+                    "-std=c++11",
+                    "-I#{include}/jsoncpp",
+                    "-L#{lib}",
+                    "-ljsoncpp"
     system "./test"
   end
 end
