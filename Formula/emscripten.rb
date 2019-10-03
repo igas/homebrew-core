@@ -2,18 +2,48 @@ class Emscripten < Formula
   desc "LLVM bytecode to JavaScript compiler"
   homepage "https://kripken.github.io/emscripten-site/"
 
-  stable do
-    url "https://github.com/emscripten-core/emscripten/archive/1.38.44.tar.gz"
-    sha256 "e6bf63595ca28beb4c0385062cd686f1b442d7faa8b3c717fb4cb872478b4660"
+  # Get revision from https://github.com/emscripten-core/emsdk/blob/master/emscripten-releases-tags.txt
+  # Open following link (replace bc367c257409d676e71c5511383228b7aabf1689 with revison got previously)
+  # https://chromium.googlesource.com/emscripten-releases/+/bc367c257409d676e71c5511383228b7aabf1689/DEPS
 
-    resource "fastcomp" do
-      url "https://github.com/emscripten-core/emscripten-fastcomp/archive/1.38.44.tar.gz"
-      sha256 "d066f36d1083e5d62e2a9fb24e162e506a6b359fc101c43aec22ba8b1a836a01"
+  binaryen_revision = "fc6d2df4eedfef53a0a29fed1ff3ce4707556700"
+  fastcomp_revision = "6c7e775325067e33fa60611e619a8b987b6d0c35"
+  fastcomp_clang_revision = "98df4be387dde3e3918fa5bbb5fc43e1a0e1daac"
+  llvm_project_revision = "12e915b3fcc55b8394dce3105a24c009e516d153"
+  v8_revision = "4c8ffcbe3959f4a1b799bb9d6b7ef9b49bf6d144"
+  wabt_revision = "04fd00d2fc29b565da350739d3a1f9c85267d5d2"
+  waterfall_revision = "d43b36904743b7494a49ed47230d1506a749bfe1"
+
+  stable do
+    url "https://github.com/emscripten-core/emscripten/archive/1.38.47.tar.gz"
+    sha256 "3412740c703432274f35a08e00cafa500a2f2effcc455484faee9e786b917b12"
+
+    resource "binaryen" do
+      url "https://github.com/WebAssembly/binaryen.git", :revision => binaryen_revision
     end
 
-    resource "fastcomp-clang" do
-      url "https://github.com/emscripten-core/emscripten-fastcomp-clang/archive/1.38.44.tar.gz"
-      sha256 "13aca52d91aba756f8e0610e4a4ebd8147369f4708c7542efdf8a4f96e52f2a1"
+    resource "fastcomp" do
+      url "https://github.com/emscripten-core/emscripten-fastcomp.git", :revision => fastcomp_revision
+    end
+
+    resource "fastcomp_clang" do
+      url "https://github.com/emscripten-core/emscripten-fastcomp-clang.git", :revision => fastcomp_clang_revision
+    end
+
+    resource "llvm" do
+      url "https://github.com/llvm/llvm-project.git", :revision => llvm_project_revision
+    end
+
+    resource "v8" do
+      url "https://chromium.googlesource.com/v8/v8.git", :revision => v8_revision
+    end
+
+    resource "wabt" do
+      url "https://github.com/WebAssembly/wabt.git", :revision => wabt_revision
+    end
+
+    resource "waterfall" do
+      url "https://github.com/WebAssembly/waterfall.git", :revision => waterfall_revision
     end
   end
 
