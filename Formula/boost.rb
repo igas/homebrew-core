@@ -3,6 +3,7 @@ class Boost < Formula
   homepage "https://www.boost.org/"
   url "https://dl.bintray.com/boostorg/release/1.71.0/source/boost_1_71_0.tar.bz2"
   sha256 "d73a8da01e8bf8c7eda40b4c84915071a8c8a0df4a6734537ddde4a8580524ee"
+  revision 1
   head "https://github.com/boostorg/boost.git"
 
   bottle do
